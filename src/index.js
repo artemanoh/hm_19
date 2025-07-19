@@ -6,7 +6,7 @@ const studentForm = document.getElementById("add-student-form");
 async function getStudents() {
     // твій код
   try {
-    const gettingFetch = await fetch("http://localhost:3000/students");
+    const gettingFetch = await fetch("https://687b3b09b4bc7cfbda850fa9.mockapi.io/users");
     const students = await gettingFetch.json();
     renderStudents(students);
   } catch (error) {
@@ -59,7 +59,7 @@ async function addStudent(studentData) {
     },
   };
 
-   const fetching = await fetch("http://localhost:3000/students", option); 
+   const fetching = await fetch("https://687b3b09b4bc7cfbda850fa9.mockapi.io/users", option); 
    return fetching
 }  catch (error) {
     console.log("Помилка при додаванні студента", error);
@@ -92,7 +92,7 @@ let editingId = null;
 async function updateStudent(id) {
     // твій код
     try{
-    const response = await fetch(`http://localhost:3000/students/${id}`);
+    const response = await fetch(`https://687b3b09b4bc7cfbda850fa9.mockapi.io/users/${id}`);
        const { name, age, course, skills, email, isEnrolled } = await response.json();
             studentForm.name.value = name;
             studentForm.age.value = age;
@@ -110,8 +110,8 @@ async function updateStudent(id) {
 async function updateStudentData(id, studentData) {
     // твій код
     try {
-        return await fetch(`http://localhost:3000/students/${id}`, {
-            method: "PATCH",
+        return await fetch(`https://687b3b09b4bc7cfbda850fa9.mockapi.io/users/${id}`, {
+            method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(studentData),
         });
@@ -161,7 +161,7 @@ studentsTableBody.addEventListener("click", (event) => {
 async function deleteStudent(id) {
     // твій код
     try{
-    const fetching = await fetch(`http://localhost:3000/students/${id}`, {
+    const fetching = await fetch(`https://687b3b09b4bc7cfbda850fa9.mockapi.io/users/${id}`, {
         method: "DELETE",
     });
     return fetching
